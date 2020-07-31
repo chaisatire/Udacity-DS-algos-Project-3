@@ -114,7 +114,6 @@ class MaxHeap:
             return None
         return self.cbt[0]
 
-
 def rearrange_digits(input_list):
     """
     Rearrange Array Elements so as to form two number such that their sum is maximum.
@@ -133,15 +132,19 @@ def rearrange_digits(input_list):
     for element in input_list:
         max_heap.insert(element)
 
-    number_1 = ""
-    number_2 = ""
+    number_1 = []
+    number_2 = []
 
     # Fetching the numbers out of Max Heap
-    for i in range(max_heap.size()):
-        if i % 2 == 1:
-            number_1 += str(max_heap.remove())
+    for i in range(len(input_list)):
+        element = max_heap.remove()
+        if i % 2 == 0:
+            number_1.append(element)
         else:
-            number_2 += str(max_heap.remove())
+            number_2.append(element)
+
+    number_1 = ''.join(str(i) for i in number_1)
+    number_2 = ''.join(str(i) for i in number_2)
     return [int(number_1), int(number_2)]
 
 
@@ -159,8 +162,10 @@ def test_function(test_case):
 
 
 # Test case 1:
-test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
+
+# Test case 2: Sorted Array
+test_function([[1, 2, 3, 4, 5], [542, 31]])
 
 # Test case 2: Repeating Number
 test_function([[1, 1, 2, 2, 3, 3], [321, 321]])
